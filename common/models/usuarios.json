@@ -1,7 +1,7 @@
 {
   "name": "Usuarios",
   "plural": "/Usuarios",
-  "base": "PersistedModel",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -32,8 +32,11 @@
       "type": "string",
       "required": true
     },
-    "emailVerfied": {
+    "emailVerified": {
       "type": "boolean"
+    },
+    "verificationToken": {
+      "type": "string"
     }
   },
   "validations": [],
