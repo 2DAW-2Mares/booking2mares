@@ -50,7 +50,33 @@
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "hoy"
     }
   ],
-  "methods": {}
+  "methods": {
+    "hoy": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "ocupadas",
+          "type": "array",
+          "root": true,
+          "description": "array de las habitaciones ocupadas"
+        }
+      ],
+      "description": "muestra las habitaciones ocupadas actualmente",
+      "http": [
+        {
+          "path": "/habocupadas",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }
