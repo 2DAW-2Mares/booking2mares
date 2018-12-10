@@ -25,8 +25,76 @@
       "type": "belongsTo",
       "model": "Habitacion",
       "foreignKey": ""
+    },
+    "usuario": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": ""
     }
   },
-  "acls": [],
-  "methods": {}
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "updateAll"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "updateAll"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "destroyById"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "destroyById"
+    }
+  ],
+  "methods": {
+    "hoy": {
+      "accepts": [
+      ],
+      "returns": [
+        {
+          "arg": "habReservadas",
+          "type": "array",
+          "root": false,
+          "description": ""
+        }
+      ],
+      "description": "Devuelve las reservas del dia actual",
+      "http": [
+        {
+          "path": "/hoy",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }
