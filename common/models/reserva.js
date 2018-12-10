@@ -12,14 +12,28 @@ module.exports = function(Reserva) {
     });
 
   /**
-   * Devuelve las reservas del dia actual
-   * @param {array} ctx context
-   * @param {Function(Error, array)} callback
+   Reserva.hoy = function(ctx, callback) {
+    var habReservadas = "hola";
+    var fechaActual = Date.now();
+    Reserva.find(
+      { where: {
+        hasta: {gt: fechaActual}}}
+        , function callback(err, reservas) {
+      console.log(reservas);
+    });
+    callback(null, habReservadas);
+  };
    */
 
   Reserva.hoy = function(ctx, callback) {
     var habReservadas = "hola";
-    console.log(ctx);
+    var fechaActual = Date.now();
+    Reserva.find(
+      { where: {
+        hasta: {gte: fechaActual}}, include: 'habitacion'}
+        , function callback(err, reservas) {
+      console.log(reservas);
+    });
     callback(null, habReservadas);
   };
 
