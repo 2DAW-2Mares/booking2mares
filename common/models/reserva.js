@@ -12,15 +12,32 @@ module.exports = function(Reserva) {
 
   /**
    *
-   * @param {date} Fecha
+   * @param {object} ctx
    * @param {Function(Error, array)} callback
    */
 
-  Reserva.hoy = function(Fecha, callback) {
-    var lista;
-    // TODO
-    callback(null, lista);
-  };
+  Reserva.hoy = function(ctx, callback) {
 
+    var dia=Date.now();
+    var lista=[];
+
+
+    var Hotel = Reserva.app.models.Hotel;
+    console.info(Hotel);
+
+    Hotel.findById(ctx.req.accessToken.userId, function (err, habitaciones) {
+      if (err){
+        callback(err);
+      }
+      habitaciones.buscar(function (err, lista) {
+        if (err){
+          callback(err);
+        }
+        console.info(err);
+        console.info(favoritos);
+        callback(null, lista);
+      });
+    });
+};
 
 };
