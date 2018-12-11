@@ -25,8 +25,94 @@
       "type": "belongsTo",
       "model": "Habitacion",
       "foreignKey": ""
+    },
+    "usuario": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "usuarioId"
     }
   },
-  "acls": [],
-  "methods": {}
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "update"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "update"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "delete"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "delete"
+    }
+  ],
+  "methods": {
+    "hoy": {
+      "accepts": [
+        {
+          "arg": "desde",
+          "type": "date",
+          "required": true,
+          "description": "Fecha de entrada",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "hasta",
+          "type": "date",
+          "required": true,
+          "description": "Fecha de salida",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "ocupadas",
+          "type": "string",
+          "root": false,
+          "description": "Muestra lista de ocupadas"
+        }
+      ],
+      "description": "Muestra habitaciones ocupadas en el dia en el que se hace la peticion",
+      "http": [
+        {
+          "path": "/hoy",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
