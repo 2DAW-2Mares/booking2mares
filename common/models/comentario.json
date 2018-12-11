@@ -1,0 +1,36 @@
+{
+  "name": "Comentario",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "comentario": {
+      "type": "string"
+    },
+    "valoracion": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "usuario": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "usuarioId"
+    },
+    "hotel": {
+      "type": "belongsTo",
+      "model": "Hotel",
+      "foreignKey": "hotelId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

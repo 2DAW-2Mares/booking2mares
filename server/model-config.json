@@ -36,15 +36,23 @@
     "public": false
   },
   "Hotel": {
-    "dataSource": "mysqlDS",
+    "dataSource": "db",
     "public": true
   },
   "Habitacion": {
-    "dataSource": "mysqlDS",
+    "dataSource": "db",
     "public": true
   },
   "Reserva": {
-    "dataSource": "mysqlDS",
+    "dataSource": "db",
+    "public": true
+  },
+  "Usuario": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Comentario": {
+    "dataSource": "db",
     "public": true
   }
 }
