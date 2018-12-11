@@ -76,5 +76,43 @@
       "property": "delete"
     }
   ],
-  "methods": {}
+  "methods": {
+    "habitacionesOcupadas": {
+      "accepts": [
+        {
+          "arg": "desde",
+          "type": "number",
+          "required": true,
+          "description": "Deveria ser <= que el momento actual",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "hasta",
+          "type": "number",
+          "required": true,
+          "description": "Deveria ser > que el momento actual",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "string",
+          "root": false,
+          "description": "Nos devuelven las habitaciones ocupadas"
+        }
+      ],
+      "description": "Las habitaciones que estan ocupadas",
+      "http": [
+        {
+          "path": "/habitacionesOcupadas",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }

@@ -2,16 +2,15 @@
 
 module.exports = function(app) {
   if (process.env.AUTOMIGRATE) {
-    app.dataSources.mysqlDS.automigrate(null, function(er) {
+    var lbTables = ['User', 'AccessToken', 'ACL', 'RoleMapping', 'Role'];
+    app.dataSources.db.autoupdate(lbTables, function(er) {
       if (er) throw er;
-      console.log('Loopback tables created in ', app.dataSources.mysqlDS.adapter.name);
-      app.loadFixtures()
-        .then(function() {
-          console.log('Done!');
-        })
-        .catch(function(err) {
-          console.log('Errors:', err);
-        });
+      console.log('Loopback tables [', lbTables, '] created in ', app.dataSources.db.adapter.name);
+      var booking2maresTables = ['Hotel','Habitacion"','Reserva','Usuario'];
+      app.dataSources.db.autoupdate(booking2maresTables, function(er) {
+        if (er) throw er;
+        console.log('Loopback tables [', booking2maresTables, '] created in ', app.dataSources.db.adapter.name);
+      });
     });
   }
-}
+};

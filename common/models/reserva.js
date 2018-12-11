@@ -9,4 +9,19 @@ module.exports = function(Reserva) {
     }
     next();
   });
+  
+    /**
+     * Las habitaciones que estan ocupadas
+     * @param {number} desde Deveria ser <= que el momento actual
+     * @param {number} hasta Deveria ser > que el momento actual
+     * @param {Function(Error, string)} callback
+     */
+    
+    Reserva.habitacionesOcupadas = function (desde, hasta, callback) {
+        var lista="'ocupadas': ["; 
+        // TODO
+        callback(null, lista);
+    };
+
+  
 };
