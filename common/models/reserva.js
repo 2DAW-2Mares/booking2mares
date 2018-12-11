@@ -13,7 +13,7 @@ module.exports = function(Reserva) {
       next();
     });
 
-Reserva.hoy = function(desde, hasta, callback) {
+/*Reserva.hoy = function(desde, hasta, callback) {
    
         Reserva.find( {where: { desde: desde, key2: {lt: 'val2'}{pension: true}, function(err, results) {
         
@@ -27,6 +27,6 @@ Reserva.hoy = function(desde, hasta, callback) {
    
     
 
-  };
+  };*/
   
   };
