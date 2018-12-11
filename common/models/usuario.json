@@ -1,7 +1,6 @@
 {
-  "name": "Hotel",
-  "plural": "Hoteles",
-  "base": "PersistedModel",
+  "name": "Usuario",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -11,24 +10,15 @@
       "type": "string",
       "required": true
     },
-    "estrellas": {
-      "type": "number"
-    },
-    "localizacion": {
-      "type": "geopoint"
-    },
-    "telefono": {
+    "apellidos": {
       "type": "string"
-    },
-    "votos": {
-      "type": "number"
     }
   },
   "validations": [],
   "relations": {
-    "habitaciones": {
+    "reservas": {
       "type": "hasMany",
-      "model": "Habitacion",
+      "model": "Reserva",
       "foreignKey": ""
     },
     "comentarios": {

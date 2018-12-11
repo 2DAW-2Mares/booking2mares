@@ -46,5 +46,13 @@
   "Reserva": {
     "dataSource": "mysqlDS",
     "public": true
+  },
+  "Usuario": {
+    "dataSource": "mysqlDS",
+    "public": true
+  },
+  "Comentario": {
+    "dataSource": "mysqlDS",
+    "public": true
   }
 }
