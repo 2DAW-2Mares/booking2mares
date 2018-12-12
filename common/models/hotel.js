@@ -19,15 +19,14 @@ Hotel.prototype.primeraLibre = function(callback) {
 
 								if(reservas.length==0){
 								libre=habitacion;
-								callback(libre);
-								
+								callback(null,libre);
 								}
 					});
 
 
 			});
 
-
+		
 	});
 
 
