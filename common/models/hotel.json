@@ -33,5 +33,43 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "primeraLibre": {
+      "accepts": [
+        {
+          "arg": "desde",
+          "type": "date",
+          "required": true,
+          "description": "\"desdes\" es la fecha que queremos entrar al hotel",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "hasta",
+          "type": "date",
+          "required": true,
+          "description": "\"hasta\" es la fecha que queremos salir del hotel",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lista",
+          "type": "string",
+          "root": false,
+          "description": "nos muestra las habitaciones libres en esas fechas"
+        }
+      ],
+      "description": "muestra habitaciones libres",
+      "http": [
+        {
+          "path": "/primeraLibre",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
