@@ -33,5 +33,34 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "primeraLibre": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "number",
+          "required": true,
+          "description": "id del hotel",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "libre",
+          "type": "object",
+          "root": false,
+          "description": "primera habitacion libre"
+        }
+      ],
+      "description": "Muestra la primera habitacion libre del hotel que se pide",
+      "http": [
+        {
+          "path": "/primeraLibre",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }
