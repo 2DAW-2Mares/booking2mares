@@ -1,0 +1,204 @@
+diff --git a/.gitignore b/.gitignore
+index 733acc2..aff1045 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -17,4 +17,3 @@
+ coverage
+ node_modules
+ npm-debug.log
+-/nbproject/private/
+\ No newline at end of file
+diff --git a/common/models/reserva.js b/common/models/reserva.js
+index bb7f7fc..54ff8c9 100644
+--- a/common/models/reserva.js
++++ b/common/models/reserva.js
+@@ -1,30 +1,5 @@
+ 'use strict';
+ 
+ module.exports = function(Reserva) {
+-  Reserva.beforeRemote('create', function (context, reserva, next) {
+-    context.args.data.usuarioId = context.req.accessToken.userId;
+-    next();
+-  });
+ 
+-Reserva.beforeRemote('create',function(context, instance, next){
+-var desde = context.args.desde;
+-var hasta = context.args.hasta;
+-if(hasta>desde) {next(error,"LA FECHA LIMITE NO PUEDE SER MENOR A LA INICIAL");}
+-next();
+-});
+-
+-/**
+- * Descubre las reservas que estan activas hoy
+- * @param {Function(Error, array)} callback
+- */
+-/* NO FUNCIONA
+-Reserva.Hoy = function(callback) {
+-  var ocupadas;
+-
+-  Reserva.find({"where": {"and"[{"2018-12-11">="Review.desde"},{"2018-12-11"<"Revies.hasta"}]}} function(err,ocupadas){
+-callback(err,ocupadas);
+-});
+-  callback(null, ocupadas);
+-};
+-*/
+ };
+diff --git a/common/models/reserva.json b/common/models/reserva.json
+index 262ba71..1d26f9f 100644
+--- a/common/models/reserva.json
++++ b/common/models/reserva.json
+@@ -25,51 +25,8 @@
+       "type": "belongsTo",
+       "model": "Habitacion",
+       "foreignKey": ""
+-    },
+-    "usuarioId": {
+-      "type": "belongsTo",
+-      "model": "Usuario",
+-      "foreignKey": ""
+     }
+   },
+-  "acls": [
+-    {
+-      "accessType": "*",
+-      "principalType": "ROLE",
+-      "principalId": "$everyone",
+-      "permission": "DENY"
+-    },
+-    {
+-      "accessType": "WRITE",
+-      "principalType": "ROLE",
+-      "principalId": "$owner",
+-      "permission": "ALLOW"
+-    },
+-    {
+-      "accessType": "*",
+-      "principalType": "ROLE",
+-      "principalId": "$authenticated",
+-      "permission": "ALLOW"
+-    }
+-  ],
+-  "methods": {
+-    "Hoy": {
+-      "accepts": [],
+-      "returns": [
+-        {
+-          "arg": "ocupadas",
+-          "type": "array",
+-          "root": false,
+-          "description": "Las habitaciones ocupadas actualmente"
+-        }
+-      ],
+-      "description": "Descubre las reservas que estan activas hoy",
+-      "http": [
+-        {
+-          "path": "/GET",
+-          "verb": "get"
+-        }
+-      ]
+-    }
+-  }
++  "acls": [],
++  "methods": {}
+ }
+diff --git a/common/models/usuario.js b/common/models/usuario.js
+deleted file mode 100644
+index d3fa90e..0000000
+--- a/common/models/usuario.js
++++ /dev/null
+@@ -1,5 +0,0 @@
+-'use strict';
+-
+-module.exports = function(Usuario) {
+-
+-};
+diff --git a/common/models/usuario.json b/common/models/usuario.json
+deleted file mode 100644
+index d9c846c..0000000
+--- a/common/models/usuario.json
++++ /dev/null
+@@ -1,48 +0,0 @@
+-{
+-  "name": "Usuario",
+-  "plural": "Usuarios",
+-  "base": "User",
+-  "idInjection": true,
+-  "options": {
+-    "validateUpsert": true
+-  },
+-  "properties": {
+-    "nombre": {
+-      "type": "string",
+-      "required": true
+-    },
+-    "apellidos": {
+-      "type": "string"
+-    },
+-    "realm": {
+-      "type": "string"
+-    },
+-    "username": {
+-      "type": "string"
+-    },
+-    "password": {
+-      "type": "string",
+-      "required": true
+-    },
+-    "email": {
+-      "type": "string",
+-      "required": true
+-    },
+-    "emailVerified": {
+-      "type": "number"
+-    },
+-    "verificationToken": {
+-      "type": "string"
+-    }
+-  },
+-  "validations": [],
+-  "relations": {
+-    "reservas": {
+-      "type": "hasMany",
+-      "model": "Reserva",
+-      "foreignKey": ""
+-    }
+-  },
+-  "acls": [],
+-  "methods": {}
+-}
+diff --git a/nbproject/project.properties b/nbproject/project.properties
+deleted file mode 100644
+index da97eba..0000000
+--- a/nbproject/project.properties
++++ /dev/null
+@@ -1,3 +0,0 @@
+-files.encoding=UTF-8
+-site.root.folder=
+-source.folder=
+diff --git a/server/datasources.json b/server/datasources.json
+index 7e7a66b..3fc6614 100644
+--- a/server/datasources.json
++++ b/server/datasources.json
+@@ -10,7 +10,7 @@
+     "database": "booking2mares",
+     "password": "alumno",
+     "name": "mysqlDS",
+-    "user": "root",
++    "user": "alumno",
+     "connector": "mysql"
+   }
+ }
+diff --git a/server/model-config.json b/server/model-config.json
+index 936f539..818b304 100644
+--- a/server/model-config.json
++++ b/server/model-config.json
+@@ -46,9 +46,5 @@
+   "Reserva": {
+     "dataSource": "mysqlDS",
+     "public": true
+-  },
+-  "Usuario": {
+-    "dataSource": "mysqlDS",
+-    "public": true
+   }
+ }
