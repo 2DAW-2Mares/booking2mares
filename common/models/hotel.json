@@ -32,6 +32,40 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
-  "methods": {}
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "primeraLibre"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "primeraLibre"
+    }
+  ],
+  "methods": {
+    "prototype.primeraLibre": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "libre",
+          "type": "object",
+          "root": false,
+          "description": "la habitación que está libre"
+        }
+      ],
+      "description": "Devuelve la primera habitación que no esté reservada del hotel indicado",
+      "http": [
+        {
+          "path": "/primeraLibre",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }
